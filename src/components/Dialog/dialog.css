@@ -1,0 +1,49 @@
+.dialog {
+    height: 80px;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+    cursor: pointer;
+    display: flex;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+}
+
+.dialog:hover {
+    background-color: #b4b4b4;
+}
+
+.dialog-avatar {
+    border: 1px solid black;
+    display: block;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(44, 44, 255);
+    position: relative;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.dialog-avatar p {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dialog-last-message-time {
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+}
+
+.dialog-last-message span, .dialog-inner-user { 
+    font-weight: 600;
+}

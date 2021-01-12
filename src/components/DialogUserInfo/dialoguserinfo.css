@@ -1,0 +1,7 @@
+.inner-profile-info {
+    height: 85px;
+    box-sizing: border-box;
+    padding: 10px;
+    display: block;
+    border-bottom: 1px solid rgba(81, 81, 81, 0.2);
+}

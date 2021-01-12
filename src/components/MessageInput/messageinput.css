@@ -1,0 +1,31 @@
+.message-input {
+    width: 95%;
+    border: 1px solid rgba(81, 81, 81, 0.2);
+    box-sizing: border-box;
+    padding: 10px 65px 10px 10px;
+    border-radius: 5px;
+    margin: auto;
+    display: block;
+}
+
+.message-input-box {
+    width: 100%;
+    border-top: 1px solid rgba(81, 81, 81, 0.2);
+    padding: 20px 0;
+    position: relative;
+}
+
+.message-input-box button {
+    position: absolute;
+    top: 23px;
+    right: 5%;
+    height: 35px;
+    border: none;
+    background-color: #ffffff;
+    color: rgba(81, 81, 81, 0.5);
+}
+
+.message-input-box button:hover {
+    cursor: pointer;
+    color: #000;
+}

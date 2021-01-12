@@ -1,0 +1,42 @@
+.auth-comp form {
+    width: 320px;
+    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.auth-comp form input, .auth-comp form button {
+    display: block;
+    margin: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+.auth-comp form button {
+    transition: .5s all;
+    cursor: pointer;
+}
+
+.auth-comp form button:hover {
+    background-color: black;
+    color: antiquewhite;
+}
+
+.auth-comp form p {
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-comp form span {
+    text-decoration: underline;
+    cursor: pointer;
+}

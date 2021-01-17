@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import settings from '../../settings.json';
 import Axios from 'axios';
 
+// import socket from '../../socket';
+
 import './login.css';
 
 class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             login: null,
             password: null
-        }
+        };
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -19,6 +21,13 @@ class Login extends Component {
 
     async handleLogin(e) {
         e.preventDefault();
+        if (!this.state.login || !this.state.password) {
+            alert('Input values!!!');
+            return this.setState({
+                login: null,
+                password: null
+            })
+        }
         let result;
         try {
             result = await Axios({
@@ -28,15 +37,15 @@ class Login extends Component {
                     login: this.state.login,
                     password: this.state.password
                 }
-            })
-
-            localStorage.setItem('token', result.data.token)
-            localStorage.setItem('id', result.data.id)
-
-            await this.props.handleLogin(true, result.data.user)
-        } catch (error) {
-            await this.props.handleLogin(false, {})
+            });
+        } catch (err) {
+            return await this.props.handleLogin(false, {})
         }
+
+        localStorage.setItem('token', result.data.token);
+        localStorage.setItem('id', result.data.id);
+
+        return await this.props.handleLogin(true, result.data.user)
     }
 
     async handleChange(e) {

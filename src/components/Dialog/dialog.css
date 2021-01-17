@@ -9,6 +9,17 @@
     position: relative;
 }
 
+.online {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: #28ff00;
+    bottom: 0;
+    right: 2px;
+}
+
 .dialog:hover {
     background-color: #b4b4b4;
 }

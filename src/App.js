@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import Sidebar from './components/Sidebar';
 import MessageBox from './components/MessageBox';
@@ -10,7 +12,7 @@ import socket from './socket';
 class App extends Component {
 	_isMounted = false;
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.handleLogin = this.handleLogin.bind(this);
 		this.selectDialog = this.selectDialog.bind(this);
@@ -22,14 +24,25 @@ class App extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (Object.keys(prevState.selectedDialog).length > 0) {
+			if (prevState.selectedDialog.id != this.state.selectedDialog.id) {
+				socket.emit('roomLeave', {
+					user: localStorage.getItem('id'),
+					room: prevState.selectedDialog.id
+				})
+			}
+		}
+	}
+
 	selectDialog(value) {
 		socket.emit('roomJoin', {
 			user: localStorage.getItem('id'),
-			room: value
-		})
+			room: value.id
+		});
 		this.setState({
 			selectedDialog: value
-		})
+		});
 	}
 
 	async handleLogin(value, user) {
@@ -48,6 +61,16 @@ class App extends Component {
 	}
 
 	async componentDidMount() {
+		window.addEventListener('beforeunload', (ev) => {
+			ev.preventDefault();
+
+			if (localStorage.getItem('id') != null) {
+				socket.emit('userStatusChanged', {
+					status: 0,
+					id: localStorage.getItem('id')
+				})
+			}
+		});
 		this._isMounted = true;
 		if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
 			return this.setState({
@@ -97,7 +120,7 @@ class App extends Component {
 				<div className="chat-main-block">
 					{this.state.logged ?
 						<>
-							<Sidebar user={this.state.user} handleLogin={this.handleLogin} selectDialog={this.selectDialog} />
+							<Sidebar user={this.state.user} handleLogin={this.handleLogin} selectDialog={this.selectDialog} selectedDialog={this.state.selectedDialog.id} />
 							<MessageBox selectedDialog={this.state.selectedDialog} />
 						</> : <AuthComp handleLogin={this.handleLogin} />
 					}

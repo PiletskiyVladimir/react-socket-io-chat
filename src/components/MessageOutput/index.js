@@ -23,14 +23,14 @@ class MessageOutput extends Component {
 
     scrollToBottom = (behaviour) => {
         this.messagesEnd.scrollIntoView({ behavior: behaviour });
-    }
+    };
 
     async componentDidUpdate(prevProps, prevState) {
         if (prevProps.selectedDialog != this.props.selectedDialog) {
             if (this.props.selectedDialog) {
                 let messages = await Axios({
                     url: `${settings.serverUrl}${this.props.selectedDialog}/messages`
-                })
+                });
     
                 return this.setState({
                     messages: messages.data.messages
@@ -39,7 +39,7 @@ class MessageOutput extends Component {
         }
 
         if (this.state.messages.length > 0) {
-            this.scrollToBottom("smooth");
+            this.scrollToBottom("auto");
         }
     }
 
@@ -52,11 +52,11 @@ class MessageOutput extends Component {
             this.setState({
                 messages: array
             })
-        })
+        });
         if (this.props.selectedDialog) {
             let messages = await Axios({
                 url: `${settings.serverUrl}${this.props.selectedDialog}/messages`
-            })
+            });
 
             return this.setState({
                 messages: messages.data.messages

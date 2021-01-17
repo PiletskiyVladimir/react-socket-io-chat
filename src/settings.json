@@ -1,4 +1,8 @@
 {
     "serverUrl": "http://localhost:3011/",
-    "socketUrl": "http://localhost:4100"
+    "socketUrl": "http://localhost:4100",
+    "dialogMessageLength": {
+        "short": 17,
+        "normal": 22
+    }
 }
